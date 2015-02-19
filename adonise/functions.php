@@ -3,6 +3,15 @@ function isHTTPS()
 {
 	return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'];
 }
+
+/**
+ * Check if this is run in the admin area
+ * @return bool
+ */
+function isAdmin()
+{
+	return array_shift(explode('/',A_Request::getSingleton()->getUri(),2)) == (defined('A_ADMIN_URI') ? A_ADMIN_URI : 'admin');
+}
 function getBaseUrl( $full_url )
 {
 	if ( $full_url ) {
